@@ -7,6 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcolor-diagnostics -fPIC -Wno-attribute
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 set(ARCH "arm64-v8a")
+# set(ARCH "armeabi-v7a")
 
 set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
 
