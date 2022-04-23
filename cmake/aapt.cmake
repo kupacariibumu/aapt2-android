@@ -53,7 +53,6 @@ target_link_libraries(aapt
     crypto
     libjson
     libpng
-    c++_static
     z
     )
     

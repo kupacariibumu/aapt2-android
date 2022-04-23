@@ -4,17 +4,20 @@ project(build-tools-android)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcolor-diagnostics -fPIC -Wno-attributes -std=gnu11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcolor-diagnostics -fPIC -Wno-attributes -std=gnu++2a")
-set(CMAKE_EXE_LINKER_FLAGS "-static")
-
-set(ARCH "arm64-v8a")
-# set(ARCH "armeabi-v7a")
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
 
 set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
 
+if(NOT DEFINED ARCH)
+    message(FATAL_ERROR "ARCH is not defined")
+endif()
+
 if(${ARCH} STREQUAL "arm64-v8a" OR ${ARCH} STREQUAL "armeabi-v7a")
     enable_language(ASM)
-elseif(${ARCH} STREQUAL "x86-64" OR ${ARCH} STREQUAL "x86")
+elseif(${ARCH} STREQUAL "x86_64" OR ${ARCH} STREQUAL "x86")
     enable_language(ASM_NASM)
+else()
+    message(FATAL_ERROR "Unsupported architecture: ${ARCH}")
 endif()
 
 add_library(crypto STATIC IMPORTED)

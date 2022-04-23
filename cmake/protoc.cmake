@@ -95,5 +95,4 @@ target_link_libraries(protoc
     libprotobuf
     liblog
     z
-    c++_static
     )

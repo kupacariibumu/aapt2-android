@@ -39,26 +39,6 @@ set(TOOL_SOURCE
     ${SRC_PATH}/aapt2/cmd/Util.cpp
     )
     
-set(LINK_LIB
-    libandroidfw 
-    libincfs
-    libselinux
-    libsepol
-    libpackagelistparser
-    libutils 
-    libcutils
-    libziparchive
-    libbase
-    libprotobuf
-    liblog
-    libpng
-    libexpat
-    libpcre
-    crypto
-    ssl
-    z
-    )
-    
 # build the host static library: aapt2
 add_library(libaapt2 STATIC
     ${SRC_PATH}/aapt2/compile/IdAssigner.cpp
@@ -157,6 +137,27 @@ set(INCLUDE_PATH
     ${SRC_PATH}/incfs/kernel-headers
     )
     
+set(LINK_LIB
+    libandroidfw 
+    libincfs
+    libselinux
+    libsepol
+    libpackagelistparser
+    libutils 
+    libcutils
+    libziparchive
+    libbase
+    libprotobuf
+    liblog
+    libpng
+    libexpat
+    libpcre
+    crypto
+    ssl
+    z
+    libaapt2
+    )
+    
 target_include_directories(libaapt2 PUBLIC ${INCLUDE_PATH})
 
 # build the host shared library: aapt2_jni
@@ -168,9 +169,7 @@ add_library(aapt2_jni SHARED
 target_include_directories(aapt2_jni PUBLIC ${INCLUDE_PATH})
 
 target_link_libraries(aapt2_jni
-    libaapt2
     ${LINK_LIB}
-    c++_shared
     )
 
 # build the executable file aapt2
@@ -181,8 +180,6 @@ add_executable(aapt2
     
 target_include_directories(aapt2 PUBLIC ${INCLUDE_PATH})
 
-target_link_libraries(aapt2 
-    libaapt2
+target_link_libraries(aapt2
     ${LINK_LIB}
-    c++_static
     )

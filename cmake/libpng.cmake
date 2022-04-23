@@ -29,7 +29,7 @@ target_sources(libpng PUBLIC
     )
 endif()
 
-elseif(${ARCH} STREQUAL "x86-64" OR ${ARCH} STREQUAL "x86")
+elseif(${ARCH} STREQUAL "x86_64" OR ${ARCH} STREQUAL "x86")
 target_sources(libpng PUBLIC
     ${SRC_PATH}/libpng/intel/intel_init.c
     ${SRC_PATH}/libpng/intel/filter_sse2_intrinsics.c

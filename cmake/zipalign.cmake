@@ -22,6 +22,5 @@ target_link_libraries(zipalign
     libziparchive
     libzopfli
     liblog
-    c++_static
     z
     )

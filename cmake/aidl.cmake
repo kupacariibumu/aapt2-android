@@ -86,5 +86,4 @@ target_link_libraries(aidl
     liblog
     libgtest
     libfmt
-    c++_static
     )
