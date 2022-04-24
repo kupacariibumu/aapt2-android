@@ -3,4 +3,4 @@
 
 Reference https://github.com/Lzhiyong/sdk-tools
 
-Thanks to @Lucaskyy for build.sh script
+Thanks to ![@Lucaskyy](https://github.com/Lucaskyy) for build.sh script
