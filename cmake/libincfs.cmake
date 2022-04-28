@@ -14,7 +14,7 @@ target_include_directories(libincfs PUBLIC
     ${SRC_PATH}/incfs/kernel-headers
     ${SRC_PATH}/libbase/include
     ${SRC_PATH}/libutils/include
-    ${SRC_PATH}/openssl/include
+    ${SRC_PATH}/boringssl/include
     ${SRC_PATH}/libselinux/include
     ${SRC_PATH}/liblog/include 
     )

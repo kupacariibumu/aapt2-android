@@ -32,7 +32,7 @@ compileTools() {
     ;;
   esac
   currentdir="$(pwd)"
-  outdir="$currentdir/dist/$arch"
+  outdir="$currentdir/bin/$arch"
 
   if [ -d "$outdir" ]; then
     echo "Skipping compilation against target $arch because it already exists."
@@ -53,22 +53,20 @@ compileTools() {
     -DCMAKE_BUILD_WITH_INSTALL_RPATH=True \
     -DCMAKE_SYSROOT="$NDK_TOOLCHAIN/sysroot" \
     -DCMAKE_BUILD_TYPE=Release \
-    -DARCH="$arch" \
+    -DANDROID_ABI="$arch" \
     .. || exit 1
 
   ninja -j16 || exit 1
 
-  llvm-strip -g "aapt2"
-  llvm-strip -g "libaapt2_jni.so"
-  llvm-strip -g "aapt"
-  llvm-strip -g "aidl"
-  llvm-strip -g "zipalign"
-  llvm-strip -g "protoc"
+  llvm-strip --strip-unneeded "aapt2"
+  llvm-strip --strip-unneeded "aapt"
+  llvm-strip --strip-unneeded "aidl"
+  llvm-strip --strip-unneeded "zipalign"
+  llvm-strip --strip-unneeded "protoc"
 
   mkdir -p "$outdir"
   
   mv "aapt2" "$outdir"
-  mv "libaapt2_jni.so" "$outdir"
   mv "aapt" "$outdir"
   mv "aidl" "$outdir"
   mv "zipalign" "$outdir"
@@ -83,7 +81,6 @@ buildTools() {
   echo "Unzipping sources..."
   unzip -q -o src.zip
 
-  mkdir -p "dist"
   for arch in "arm64-v8a" \
     "armeabi-v7a" \
     "x86" \

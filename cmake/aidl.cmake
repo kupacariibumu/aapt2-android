@@ -36,7 +36,8 @@ add_custom_target(patch
     COMMENT "to patch for ${GEN_PARSER_HEAD_FILE}"
     )
 
-add_executable(aidl ${SRC_PATH}/aidl/main.cpp
+add_executable(aidl 
+    ${SRC_PATH}/aidl/main.cpp
     ${SRC_PATH}/aidl/aidl_checkapi.cpp
     ${SRC_PATH}/aidl/aidl_const_expressions.cpp
     ${SRC_PATH}/aidl/aidl_dumpapi.cpp
@@ -69,10 +70,6 @@ add_executable(aidl ${SRC_PATH}/aidl/main.cpp
     ${SRC_PATH}/aidl/parser.cpp
     ${SRC_PATH}/aidl/preprocess.cpp
     ${FLEX_LangScanner_OUTPUTS}
-    )
-    
-target_compile_definitions(aidl PRIVATE
-    -DPLATFORM_SDK_VERSION="31.0.3"
     )
     
 target_include_directories(aidl PUBLIC

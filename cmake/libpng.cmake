@@ -16,21 +16,21 @@ add_library(libpng STATIC
     ${SRC_PATH}/libpng/pngwutil.c
     )
     
-if(${ARCH} STREQUAL "arm64-v8a" OR ${ARCH} STREQUAL "armeabi-v7a")
-target_sources(libpng PUBLIC
+if(${ANDROID_ABI} STREQUAL "arm64-v8a" OR ${ANDROID_ABI} STREQUAL "armeabi-v7a")
+target_sources(libpng PRIVATE
     ${SRC_PATH}/libpng/arm/arm_init.c
     ${SRC_PATH}/libpng/arm/filter_neon_intrinsics.c
     ${SRC_PATH}/libpng/arm/palette_neon_intrinsics.c
     )
     
-if(${ARCH} STREQUAL "armeabi-v7a")
-target_sources(libpng PUBLIC
+if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+target_sources(libpng PRIVATE
     ${SRC_PATH}/libpng/arm/filter_neon.S
     )
 endif()
 
-elseif(${ARCH} STREQUAL "x86_64" OR ${ARCH} STREQUAL "x86")
-target_sources(libpng PUBLIC
+elseif(${ANDROID_ABI} STREQUAL "x86_64" OR ${ANDROID_ABI} STREQUAL "x86")
+target_sources(libpng PRIVATE
     ${SRC_PATH}/libpng/intel/intel_init.c
     ${SRC_PATH}/libpng/intel/filter_sse2_intrinsics.c
     )

@@ -28,7 +28,7 @@ add_library(libpcre STATIC
     ${SRC_PATH}/pcre/dist2/src/pcre2_chartables.c
     )
     
-target_compile_definitions(libpcre PUBLIC
+target_compile_definitions(libpcre PRIVATE
     -DHAVE_CONFIG_H
     )
         

@@ -1,4 +1,5 @@
-add_executable(aapt ${SRC_PATH}/aapt/Main.cpp
+add_executable(aapt
+    ${SRC_PATH}/aapt/Main.cpp
     ${SRC_PATH}/aapt/AaptAssets.cpp
     ${SRC_PATH}/aapt/AaptConfig.cpp
     ${SRC_PATH}/aapt/AaptUtil.cpp
@@ -50,9 +51,9 @@ target_link_libraries(aapt
     libprocessgroup
     liblog
     libexpat
-    crypto
     libjson
     libpng
+    crypto
     z
     )
     

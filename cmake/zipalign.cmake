@@ -1,4 +1,5 @@
-add_executable(zipalign ${SRC_PATH}/zipalign/ZipAlignMain.cpp
+add_executable(zipalign
+    ${SRC_PATH}/zipalign/ZipAlignMain.cpp
     ${SRC_PATH}/zipalign/ZipAlign.cpp
     ${SRC_PATH}/zipalign/ZipEntry.cpp
     ${SRC_PATH}/zipalign/ZipFile.cpp

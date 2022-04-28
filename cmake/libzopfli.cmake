@@ -13,6 +13,6 @@ add_library(libzopfli STATIC
     ${SRC_PATH}/zopfli/src/zopfli/zopfli_lib.c
     )
     
-target_include_directories(libzopfli PRIVATE
+target_include_directories(libzopfli PUBLIC
     ${SRC_PATH}/zopfli/src
     )

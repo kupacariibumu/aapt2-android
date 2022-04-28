@@ -1,6 +1,4 @@
 # build-tools-android
-31.0.3 build-tools for android
+building build-tools 31.0.3 for android
 
 Reference https://github.com/Lzhiyong/sdk-tools
-
-Thanks to @Lucaskyy for [build.sh](https://github.com/ReVancedTeam/aapt2/blob/main/build.sh) script
