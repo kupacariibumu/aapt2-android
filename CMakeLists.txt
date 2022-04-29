@@ -19,6 +19,8 @@ else()
     message(FATAL_ERROR "Unsupported architecture: ${ANDROID_ABI}")
 endif()
 
+add_definitions(-D_FILE_OFFSET_BITS=64)
+
 add_library(crypto STATIC IMPORTED)
 set_target_properties(crypto PROPERTIES IMPORTED_LOCATION ${SRC_PATH}/boringssl/lib/${ANDROID_ABI}/libcrypto.a)
 
