@@ -1,4 +1,5 @@
-add_executable(protoc ${SRC_PATH}/protobuf/src/google/protobuf/compiler/main.cc
+add_executable(protoc
+    ${SRC_PATH}/protobuf/src/google/protobuf/compiler/main.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/code_generator.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/command_line_interface.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/cpp/cpp_enum.cc
