@@ -80,20 +80,17 @@ add_executable(protoc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/python/python_generator.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/ruby/ruby_generator.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/subprocess.cc
-    ${SRC_PATH}/protobuf/src/google/protobuf/compiler/zip_writer.cc
-    )
+    ${SRC_PATH}/protobuf/src/google/protobuf/compiler/zip_writer.cc)
     
 target_compile_definitions(protoc PRIVATE
-    -DHAVE_ZLIB=1
-    )
+    -DHAVE_ZLIB=1)
 
 target_include_directories(protoc PUBLIC 
     ${SRC_PATH}/protobuf/src
-    ${SRC_PATH}/protobuf/android
-    )
+    ${SRC_PATH}/protobuf/android)
     
 target_link_libraries(protoc
     libprotobuf
     liblog
     z
-    )
+    c++_static)

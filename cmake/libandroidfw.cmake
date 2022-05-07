@@ -20,17 +20,13 @@ add_library(libandroidfw STATIC
     ${SRC_PATH}/androidfw/TypeWrappers.cpp
     ${SRC_PATH}/androidfw/Util.cpp
     ${SRC_PATH}/androidfw/ZipFileRO.cpp
-    ${SRC_PATH}/androidfw/ZipUtils.cpp
-    )
+    ${SRC_PATH}/androidfw/ZipUtils.cpp)
 
-target_compile_definitions(libandroidfw PUBLIC
-    -DSTATIC_ANDROIDFW_FOR_TOOLS
-    )
+target_compile_definitions(libandroidfw PUBLIC -DSTATIC_ANDROIDFW_FOR_TOOLS)
 
 target_compile_definitions(libandroidfw PRIVATE
     -D_GNU_SOURCE
-    -DNDEBUG
-    )
+    -DNDEBUG)
 
 target_include_directories(libandroidfw PUBLIC
     ${SRC_PATH}/androidfw/include
@@ -39,9 +35,7 @@ target_include_directories(libandroidfw PUBLIC
     ${SRC_PATH}/libsystem/include
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/libbase/include
-    ${SRC_PATH}/native/binder/include
     ${SRC_PATH}/libziparchive/include
     ${SRC_PATH}/incremental_delivery/incfs/util/include
     ${SRC_PATH}/incremental_delivery/incfs/kernel-headers
-    ${SRC_PATH}/fmtlib/include
-    )
+    ${SRC_PATH}/fmtlib/include)

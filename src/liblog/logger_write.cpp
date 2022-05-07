@@ -39,6 +39,8 @@
 #include "logger.h"
 #include "uio.h"
 
+#undef __ANDROID__
+
 #ifdef __ANDROID__
 #include "logd_writer.h"
 #include "pmsg_writer.h"

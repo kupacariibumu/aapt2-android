@@ -113,12 +113,9 @@ add_executable(aapt2
     ${SRC_PATH}/aapt2/Configuration.proto
     ${SRC_PATH}/aapt2/Resources.proto
     ${SRC_PATH}/aapt2/ResourcesInternal.proto
-    ${AAPT2_PROTO_SRC} ${AAPT2_PROTO_HDRS}
-    )
+    ${AAPT2_PROTO_SRC} ${AAPT2_PROTO_HDRS})
     
-target_compile_definitions(aapt2 PRIVATE
-    -DPLATFORM_SDK_VERSION="31.0.3"
-    )
+target_compile_definitions(aapt2 PRIVATE -DPLATFORM_SDK_VERSION="${PLATFORM_SDK_VERSION}")
     
 target_include_directories(aapt2 PUBLIC
     ${SRC_PATH}/aapt2
@@ -129,21 +126,19 @@ target_include_directories(aapt2 PUBLIC
     ${SRC_PATH}/libpng
     ${SRC_PATH}/libbase/include
     ${SRC_PATH}/androidfw/include
-    ${SRC_PATH}/native/libidmap2_policies/include
+    ${SRC_PATH}/libidmap2_policies/include
     ${SRC_PATH}/libsystem/include
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/googletest/include
     ${SRC_PATH}/libziparchive/include 
     ${SRC_PATH}/incremental_delivery/incfs/util/include
-    ${SRC_PATH}/incremental_delivery/incfs/kernel-headers
-    )
+    ${SRC_PATH}/incremental_delivery/incfs/kernel-headers)
 
 target_link_libraries(aapt2
     libandroidfw 
     libincfs
     libselinux
     libsepol
-    libpackagelistparser
     libutils 
     libcutils
     libziparchive
@@ -158,4 +153,4 @@ target_link_libraries(aapt2
     ssl
     z
     dl
-    )
+    c++_static)

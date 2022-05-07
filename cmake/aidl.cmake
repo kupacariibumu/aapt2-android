@@ -69,22 +69,18 @@ add_executable(aidl
     ${SRC_PATH}/aidl/options.cpp
     ${SRC_PATH}/aidl/parser.cpp
     ${SRC_PATH}/aidl/preprocess.cpp
-    ${FLEX_LangScanner_OUTPUTS}
-    )
+    ${FLEX_LangScanner_OUTPUTS})
     
-target_compile_definitions(aidl PRIVATE
-    -DPLATFORM_SDK_VERSION="31.0.3"
-    )
+target_compile_definitions(aidl PRIVATE -DPLATFORM_SDK_VERSION="${PLATFORM_SDK_VERSION}")
     
 target_include_directories(aidl PUBLIC
     ${SRC_PATH}/libbase/include
     ${SRC_PATH}/fmtlib/include
-    ${SRC_PATH}/googletest/include
-    )
+    ${SRC_PATH}/googletest/include)
     
 target_link_libraries(aidl
     libbase
     liblog
     libgtest
     libfmt
-    )
+    c++_static)

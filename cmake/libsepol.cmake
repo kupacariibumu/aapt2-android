@@ -61,19 +61,14 @@ add_library(libsepol STATIC
      ${SRC_PATH}/libsepol/cil/src/cil_symtab.c
      ${SRC_PATH}/libsepol/cil/src/cil_tree.c
      ${SRC_PATH}/libsepol/cil/src/cil_verify.c
-     ${SRC_PATH}/libsepol/cil/src/cil_write_ast.c
-    )
+     ${SRC_PATH}/libsepol/cil/src/cil_write_ast.c)
 
-target_compile_definitions(libsepol PRIVATE
-    -D_GNU_SOURCE
-    )
+target_compile_definitions(libsepol PRIVATE -D_GNU_SOURCE)
 
 target_include_directories(libsepol PUBLIC
     ${SRC_PATH}/libselinux/include 
-    ${SRC_PATH}/libsepol/include
-    )
+    ${SRC_PATH}/libsepol/include)
     
 target_include_directories(libsepol PRIVATE
     ${SRC_PATH}/libsepol/src
-    ${SRC_PATH}/libsepol/cil/include
-    )
+    ${SRC_PATH}/libsepol/cil/include)

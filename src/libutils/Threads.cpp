@@ -36,7 +36,7 @@
 
 #include <utils/Log.h>
 
-#if defined(__ANDROID__)
+#if 0
 #include <processgroup/processgroup.h>
 #include <processgroup/sched_policy.h>
 #endif
@@ -67,7 +67,7 @@ using namespace android;
 
 typedef void* (*android_pthread_entry)(void*);
 
-#if defined(__ANDROID__)
+#if 0
 struct thread_data_t {
     thread_func_t   entryFunction;
     void*           userData;
@@ -131,7 +131,7 @@ int androidCreateRawThreadEtc(android_thread_func_t entryFunction,
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
-#if defined(__ANDROID__)  /* valgrind is rejecting RT-priority create reqs */
+#if 0  /* valgrind is rejecting RT-priority create reqs */
     if (threadPriority != PRIORITY_DEFAULT || threadName != NULL) {
         // Now that the pthread_t has a method to find the associated
         // android_thread_id_t (pid) from pthread_t, it would be possible to avoid
@@ -175,7 +175,7 @@ int androidCreateRawThreadEtc(android_thread_func_t entryFunction,
     return 1;
 }
 
-#if defined(__ANDROID__)
+#if 0
 static pthread_t android_thread_id_t_to_pthread(android_thread_id_t thread)
 {
     return (pthread_t) thread;
@@ -301,7 +301,7 @@ void androidSetCreateThreadFunc(android_create_thread_fn func)
     gCreateThreadFn = func;
 }
 
-#if defined(__ANDROID__)
+#if 0
 int androidSetThreadPriority(pid_t tid, int pri)
 {
     int rc = 0;
@@ -843,7 +843,7 @@ bool Thread::isRunning() const {
     return mRunning;
 }
 
-#if defined(__ANDROID__)
+#if 0
 pid_t Thread::getTid() const
 {
     // mTid is not defined until the child initializes it, and the caller may need it earlier

@@ -19,17 +19,11 @@ add_library(libutils STATIC
     ${SRC_PATH}/libutils/VectorImpl.cpp
     ${SRC_PATH}/libutils/misc.cpp
     ${SRC_PATH}/libutils/Trace.cpp
-    ${SRC_PATH}/libutils/Looper.cpp
-    )
+    ${SRC_PATH}/libutils/Looper.cpp)
 
 target_include_directories(libutils PUBLIC
     ${SRC_PATH}/libcutils/include
     ${SRC_PATH}/libutils/include 
     ${SRC_PATH}/libsystem/include
-    ${SRC_PATH}/libutils/include
-    ${SRC_PATH}/libprocessgroup/include
-    ${SRC_PATH}/libvndksupport/include
     ${SRC_PATH}/liblog/include 
-    ${SRC_PATH}/libbase/include
-    ${SRC_PATH}/libbacktrace/include
-    )
+    ${SRC_PATH}/libbase/include)

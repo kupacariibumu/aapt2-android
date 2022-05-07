@@ -13,17 +13,11 @@ add_library(libbase STATIC
     ${SRC_PATH}/libbase/stringprintf.cpp
     ${SRC_PATH}/libbase/strings.cpp
     ${SRC_PATH}/libbase/test_utils.cpp
-    ${SRC_PATH}/libbase/threads.cpp
-    )
-
-target_compile_definitions(libbase PUBLIC
-    -D_FILE_OFFSET_BITS=64
-    )
+    ${SRC_PATH}/libbase/threads.cpp)
 
 target_include_directories(libbase PUBLIC
     ${SRC_PATH}/libbase/include 
     ${SRC_PATH}/libcutils/include
     ${SRC_PATH}/libutils/include 
     ${SRC_PATH}/libsystem/include
-    ${SRC_PATH}/liblog/include
-    )
+    ${SRC_PATH}/liblog/include)

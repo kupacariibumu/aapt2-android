@@ -78,14 +78,10 @@ add_library(libprotobuf STATIC
     ${SRC_PATH}/protobuf/src/google/protobuf/util/time_util.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/util/type_resolver_util.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/wire_format.cc
-    ${SRC_PATH}/protobuf/src/google/protobuf/wrappers.pb.cc
-    )
+    ${SRC_PATH}/protobuf/src/google/protobuf/wrappers.pb.cc)
 
-target_compile_definitions(libprotobuf PRIVATE
-    -DHAVE_ZLIB=1
-    )
+target_compile_definitions(libprotobuf PRIVATE -DHAVE_ZLIB=1)
 
 target_include_directories(libprotobuf PUBLIC 
     ${SRC_PATH}/protobuf/android
-    ${SRC_PATH}/protobuf/src
-    )
+    ${SRC_PATH}/protobuf/src)

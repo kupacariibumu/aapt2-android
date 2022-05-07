@@ -42,7 +42,7 @@
 #include <utils/String16.h>
 #include <utils/String8.h>
 
-#ifdef __ANDROID__
+#if 0
 #include <binder/TextOutput.h>
 #endif
 

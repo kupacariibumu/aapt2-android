@@ -21,16 +21,12 @@ add_library(libcutils STATIC
     ${SRC_PATH}/libcutils/str_parms.cpp
     ${SRC_PATH}/libcutils/strlcpy.c
     ${SRC_PATH}/libcutils/trace-host.cpp
-    ${SRC_PATH}/libcutils/threads.cpp
-    )
+    ${SRC_PATH}/libcutils/threads.cpp)
 
-target_compile_definitions(libcutils PRIVATE
-    -D_GNU_SOURCE
-    )
+target_compile_definitions(libcutils PRIVATE -D_GNU_SOURCE)
 
 target_include_directories(libcutils PUBLIC
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/libcutils/include
     ${SRC_PATH}/liblog/include 
-    ${SRC_PATH}/libbase/include
-    )
+    ${SRC_PATH}/libbase/include)

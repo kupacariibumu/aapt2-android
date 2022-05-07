@@ -25,15 +25,11 @@ add_library(libpcre2 STATIC
     ${SRC_PATH}/pcre/dist2/src/pcre2_ucd.c
     ${SRC_PATH}/pcre/dist2/src/pcre2_valid_utf.c
     ${SRC_PATH}/pcre/dist2/src/pcre2_xclass.c
-    ${SRC_PATH}/pcre/dist2/src/pcre2_chartables.c
-    )
+    ${SRC_PATH}/pcre/dist2/src/pcre2_chartables.c)
     
-target_compile_definitions(libpcre2 PRIVATE
-    -DHAVE_CONFIG_H
-    )
+target_compile_definitions(libpcre2 PRIVATE -DHAVE_CONFIG_H)
         
 target_include_directories(libpcre2 PUBLIC
     ${SRC_PATH}/pcre/dist2/src
     ${SRC_PATH}/pcre/include_internal
-    ${SRC_PATH}/pcre/include
-    )
+    ${SRC_PATH}/pcre/include)
