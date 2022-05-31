@@ -72,8 +72,8 @@ build() {
 
 packageAndClean() {
     rm -rf "build"
-    rm "bin-all.zip"
-    zip -r "bin-all.zip" "bin"
+    rm "tools-all.zip"
+    zip -r "tools-all.zip" "bin"
     rm -rf "bin"
 }
 
