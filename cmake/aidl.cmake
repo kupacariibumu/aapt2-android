@@ -12,14 +12,12 @@ endif()
 # generate aidl_language_y.h and aidl_language_y.cpp
 bison_target(
     LangParser ${SRC_PATH}/aidl/aidl_language_y.yy ${SRC_PATH}/aidl/aidl_language_y.cpp
-    DEFINES_FILE ${SRC_PATH}/aidl/aidl_language_y.h
-    )
+    DEFINES_FILE ${SRC_PATH}/aidl/aidl_language_y.h)
 
 # generate aidl_language_l.h and aidl_language_l.cpp
 flex_target(
     LangScanner ${SRC_PATH}/aidl/aidl_language_l.ll ${SRC_PATH}/aidl/aidl_language_l.cpp
-    DEFINES_FILE ${SRC_PATH}/aidl/aidl_language_l.h
-    )
+    DEFINES_FILE ${SRC_PATH}/aidl/aidl_language_l.h)
 
 # add dependency
 add_flex_bison_dependency(LangScanner LangParser)
@@ -33,8 +31,7 @@ add_custom_target(patch
     COMMAND echo 'typedef yy::parser::location_type YYLTYPE\;' >> ${GEN_PARSER_HEAD_FILE}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     DEPENDS ${FLEX_LangScanner_OUTPUTS} ${BISON_LangParser_OUTPUTS}
-    COMMENT "to patch for ${GEN_PARSER_HEAD_FILE}"
-    )
+    COMMENT "to patch for ${GEN_PARSER_HEAD_FILE}")
 
 add_executable(aidl 
     ${SRC_PATH}/aidl/main.cpp

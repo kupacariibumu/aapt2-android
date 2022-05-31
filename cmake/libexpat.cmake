@@ -5,4 +5,4 @@ add_library(libexpat STATIC
     
 target_compile_definitions(libexpat PRIVATE -DHAVE_EXPAT_CONFIG_H)
         
-target_include_directories(libexpat PUBLIC ${SRC_PATH}/expat)
+target_include_directories(libexpat PRIVATE ${SRC_PATH}/expat)

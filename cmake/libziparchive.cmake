@@ -5,12 +5,10 @@ add_library(libziparchive STATIC
     ${SRC_PATH}/libziparchive/zip_writer.cc
     ${SRC_PATH}/libziparchive/zip_error.cpp)
 
-target_compile_definitions(libziparchive PRIVATE 
-    -DZLIB_CONST
-    -D_FILE_OFFSET_BITS=64)
+target_compile_definitions(libziparchive PRIVATE -DZLIB_CONST)
     
 target_include_directories(libziparchive PUBLIC
-    ${SRC_PATH}/libziparchive/include 
+    ${SRC_PATH}/libziparchive/include
     ${SRC_PATH}/libbase/include 
     ${SRC_PATH}/liblog/include
     ${SRC_PATH}/googletest/include)

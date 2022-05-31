@@ -7,4 +7,4 @@ target_compile_definitions(libjsoncpp PRIVATE
     -DJSON_USE_EXCEPTION=0
     -DJSONCPP_NO_LOCALE_SUPPORT)
     
-target_include_directories(libjsoncpp PUBLIC ${SRC_PATH}/jsoncpp/include)
+target_include_directories(libjsoncpp PRIVATE ${SRC_PATH}/jsoncpp/include)

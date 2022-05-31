@@ -52,7 +52,6 @@ target_link_libraries(aapt
     libpng
     libfmt
     crypto
+    c++_static
     z
-    dl
-    c++_static)
-    
+    dl)

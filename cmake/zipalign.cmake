@@ -5,14 +5,12 @@ add_executable(zipalign
     ${SRC_PATH}/zipalign/ZipFile.cpp)
 
 target_include_directories(zipalign PUBLIC
+    ${SRC_PATH}/zipalign/include
+    ${SRC_PATH}/zopfli/src
     ${SRC_PATH}/libbase/include
     ${SRC_PATH}/liblog/include
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/libziparchive/include)
-
-target_include_directories(zipalign PRIVATE
-    ${SRC_PATH}/zipalign/include
-    ${SRC_PATH}/zopfli/src)
 
 target_link_libraries(zipalign 
     libutils 
@@ -20,6 +18,6 @@ target_link_libraries(zipalign
     libziparchive
     libzopfli
     liblog
+    c++_static
     z
-    dl
-    c++_static)
+    dl)

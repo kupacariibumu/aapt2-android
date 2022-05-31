@@ -31,6 +31,7 @@ add_library(crypto STATIC IMPORTED)
 set_target_properties(crypto PROPERTIES IMPORTED_LOCATION ${SRC_PATH}/boringssl/lib/${ANDROID_ABI}/libcrypto.a)
 add_library(ssl STATIC IMPORTED)
 set_target_properties(ssl PROPERTIES IMPORTED_LOCATION ${SRC_PATH}/boringssl/lib/${ANDROID_ABI}/libssl.a)
+
 include(cmake/libbase.cmake)
 include(cmake/libcutils.cmake)
 include(cmake/libutils.cmake)

@@ -151,6 +151,6 @@ target_link_libraries(aapt2
     libfmt
     crypto
     ssl
+    c++_static
     z
-    dl
-    c++_static)
+    dl)

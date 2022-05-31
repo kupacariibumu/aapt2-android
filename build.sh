@@ -29,8 +29,9 @@ compile() {
     currentdir="$(pwd)"
     outdir="$currentdir/bin/$arch"
 
-    rm -rf "$outdir"
     rm -rf "build"
+    rm -rf "$outdir"
+    
     mkdir "build" && cd "build" || exit 1
 
     cmake -G 'Ninja' \
@@ -44,23 +45,20 @@ compile() {
 
     ninja -j16 || exit 1
 
-    llvm-strip --strip-unneeded "aapt2"
     llvm-strip --strip-unneeded "aapt"
+    llvm-strip --strip-unneeded "aapt2"
     llvm-strip --strip-unneeded "aidl"
     llvm-strip --strip-unneeded "zipalign"
     llvm-strip --strip-unneeded "protoc"
 
     mkdir -p "$outdir"
-    
-    mv "aapt2" "$outdir"
     mv "aapt" "$outdir"
+    mv "aapt2" "$outdir"
     mv "aidl" "$outdir"
     mv "zipalign" "$outdir"
     mv "protoc" "$outdir"
 
     cd "$currentdir" || exit 1
-    
-    rm -rf "build"
 }
 
 build() {
@@ -72,6 +70,13 @@ build() {
     done
 }
 
+packageAndClean() {
+    rm -rf "build"
+    rm "bin-all.zip"
+    zip -r "bin-all.zip" "bin"
+    rm -rf "bin"
+}
+
 main() {
     if [[ -z "${NDK_TOOLCHAIN}" ]]; then
         echo "Please specify the Android NDK environment variable \"NDK_TOOLCHAIN\"."
@@ -79,6 +84,7 @@ main() {
     fi
     echo "build started"
     build
+    packageAndClean
     echo "All done!"
 }
 

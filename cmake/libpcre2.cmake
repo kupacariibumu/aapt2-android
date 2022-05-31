@@ -29,7 +29,7 @@ add_library(libpcre2 STATIC
     
 target_compile_definitions(libpcre2 PRIVATE -DHAVE_CONFIG_H)
         
-target_include_directories(libpcre2 PUBLIC
+target_include_directories(libpcre2 PRIVATE
     ${SRC_PATH}/pcre/dist2/src
     ${SRC_PATH}/pcre/include_internal
     ${SRC_PATH}/pcre/include)

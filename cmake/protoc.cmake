@@ -82,8 +82,7 @@ add_executable(protoc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/subprocess.cc
     ${SRC_PATH}/protobuf/src/google/protobuf/compiler/zip_writer.cc)
     
-target_compile_definitions(protoc PRIVATE
-    -DHAVE_ZLIB=1)
+target_compile_definitions(protoc PRIVATE -DHAVE_ZLIB=1)
 
 target_include_directories(protoc PUBLIC 
     ${SRC_PATH}/protobuf/src
@@ -92,5 +91,5 @@ target_include_directories(protoc PUBLIC
 target_link_libraries(protoc
     libprotobuf
     liblog
-    z
-    c++_static)
+    c++_static
+    z)
