@@ -36,6 +36,6 @@ target_include_directories(libandroidfw PUBLIC
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/libbase/include
     ${SRC_PATH}/libziparchive/include
-    ${SRC_PATH}/incremental_delivery/incfs/util/include
-    ${SRC_PATH}/incremental_delivery/incfs/kernel-headers
+    ${SRC_PATH}/incfs/util/include
+    ${SRC_PATH}/incfs/kernel-headers
     ${SRC_PATH}/fmtlib/include)

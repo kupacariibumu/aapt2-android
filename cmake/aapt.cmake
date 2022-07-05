@@ -22,9 +22,7 @@ add_executable(aapt
     ${SRC_PATH}/aapt/ZipEntry.cpp
     ${SRC_PATH}/aapt/ZipFile.cpp)
 
-target_compile_definitions(aapt PRIVATE
-    -DSTATIC_ANDROIDFW_FOR_TOOLS
-    -DPLATFORM_SDK_VERSION="${PLATFORM_SDK_VERSION}")
+target_compile_definitions(aapt PRIVATE -DSTATIC_ANDROIDFW_FOR_TOOLS)
 
 target_include_directories(aapt PUBLIC
     ${SRC_PATH}/androidfw/include
@@ -35,8 +33,8 @@ target_include_directories(aapt PUBLIC
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/libsystem/include
     ${SRC_PATH}/liblog/include
-    ${SRC_PATH}/incremental_delivery/incfs/util/include
-    ${SRC_PATH}/incremental_delivery/incfs/kernel-headers)
+    ${SRC_PATH}/incfs/util/include
+    ${SRC_PATH}/incfs/kernel-headers)
 
 target_link_libraries(aapt
     libandroidfw

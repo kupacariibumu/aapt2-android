@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcolor-diagnostics -fPIC -Wno-attribute
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
-set(PLATFORM_SDK_VERSION "31.0.3")
+set(TOOL_VERSION "31.0.3")
 
 # 64-bit off_t for lseek.
 add_definitions(-D_FILE_OFFSET_BITS=64)

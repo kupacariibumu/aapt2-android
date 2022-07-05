@@ -68,7 +68,7 @@ add_executable(aidl
     ${SRC_PATH}/aidl/preprocess.cpp
     ${FLEX_LangScanner_OUTPUTS})
     
-target_compile_definitions(aidl PRIVATE -DPLATFORM_SDK_VERSION="${PLATFORM_SDK_VERSION}")
+target_compile_definitions(aidl PRIVATE -DPLATFORM_SDK_VERSION="${TOOL_VERSION}")
     
 target_include_directories(aidl PUBLIC
     ${SRC_PATH}/libbase/include

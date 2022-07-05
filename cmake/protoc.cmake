@@ -84,12 +84,12 @@ add_executable(protoc
     
 target_compile_definitions(protoc PRIVATE -DHAVE_ZLIB=1)
 
-target_include_directories(protoc PUBLIC 
+target_include_directories(protoc PRIVATE 
     ${SRC_PATH}/protobuf/src
-    ${SRC_PATH}/protobuf/android)
+    ${SRC_PATH}/protobuf)
     
 target_link_libraries(protoc
     libprotobuf
     liblog
-    c++_static
-    z)
+    z
+    c++_static)

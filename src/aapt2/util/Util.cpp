@@ -30,9 +30,7 @@
 #include "util/Maybe.h"
 #include "utils/Unicode.h"
 
-#ifndef PLATFORM_SDK_VERSION
-#define PLATFORM_SDK_VERSION "<UNKNOWN>"
-#endif
+#include "platform_tools_version.h"
 
 using ::aapt::text::Utf8Iterator;
 using ::android::StringPiece;
@@ -217,7 +215,7 @@ std::string GetToolFingerprint() {
   // Update minor version whenever a feature or flag is added.
   static const char* const sMinorVersion = "19";
 
-  static const char* const sBuildId = PLATFORM_SDK_VERSION;
+  static const char* const sBuildId = PLATFORM_TOOLS_VERSION;
   return android::base::StringPrintf("%s.%s-%s", sMajorVersion, sMinorVersion, sBuildId);
  }
 

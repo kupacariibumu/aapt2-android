@@ -16,9 +16,7 @@
 #include <getopt.h>
 #include <cassert>
 
-#ifndef PLATFORM_SDK_VERSION
-#define PLATFORM_SDK_VERSION "<UNKNOWN>"
-#endif
+#include "platform_tools_version.h"
 
 using namespace android;
 
@@ -32,7 +30,7 @@ int doVersion(Bundle* bundle)
     if (bundle->getFileSpecCount() != 0) {
         printf("(ignoring extra arguments)\n");
     }
-    printf("Android Asset Packaging Tool, v0.2-%s\n", PLATFORM_SDK_VERSION);
+    printf("Android Asset Packaging Tool, v0.2-%s\n", PLATFORM_TOOLS_VERSION);
 
     return 0;
 }

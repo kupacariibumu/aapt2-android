@@ -4,7 +4,7 @@
 
 #define PCRE2_CODE_UNIT_WIDTH 8
 
-#include "../dist2/src/pcre2.h.generic"
+#include "../dist2/pcre2.h.generic"
 
 
 #endif // _INCLUDE_PCRE2_H_

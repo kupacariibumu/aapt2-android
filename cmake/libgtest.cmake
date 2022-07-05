@@ -1,5 +1,3 @@
-add_library(libgtest STATIC ${SRC_PATH}/googletest/src/gtest-all.cc)
+add_library(libgtest STATIC ${SRC_PATH}/googletest/gtest-all.cc)
     
-target_include_directories(libgtest PRIVATE
-    ${SRC_PATH}/googletest/include
-    ${SRC_PATH}/googletest)
+target_include_directories(libgtest PUBLIC ${SRC_PATH}/googletest/include)

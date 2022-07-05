@@ -83,5 +83,5 @@ add_library(libprotobuf STATIC
 target_compile_definitions(libprotobuf PRIVATE -DHAVE_ZLIB=1)
 
 target_include_directories(libprotobuf PRIVATE 
-    ${SRC_PATH}/protobuf/android
+    ${SRC_PATH}/protobuf
     ${SRC_PATH}/protobuf/src)

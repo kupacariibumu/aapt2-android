@@ -115,8 +115,6 @@ add_executable(aapt2
     ${SRC_PATH}/aapt2/ResourcesInternal.proto
     ${AAPT2_PROTO_SRC} ${AAPT2_PROTO_HDRS})
     
-target_compile_definitions(aapt2 PRIVATE -DPLATFORM_SDK_VERSION="${PLATFORM_SDK_VERSION}")
-    
 target_include_directories(aapt2 PUBLIC
     ${SRC_PATH}/aapt2
     ${SRC_PATH}/protobuf/src
@@ -131,8 +129,8 @@ target_include_directories(aapt2 PUBLIC
     ${SRC_PATH}/libutils/include
     ${SRC_PATH}/googletest/include
     ${SRC_PATH}/libziparchive/include 
-    ${SRC_PATH}/incremental_delivery/incfs/util/include
-    ${SRC_PATH}/incremental_delivery/incfs/kernel-headers)
+    ${SRC_PATH}/incfs/util/include
+    ${SRC_PATH}/incfs/kernel-headers)
 
 target_link_libraries(aapt2
     libandroidfw 
