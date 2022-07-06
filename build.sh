@@ -27,7 +27,7 @@ compile() {
         ;;
     esac
     currentdir="$(pwd)"
-    outdir="$currentdir/dist/$arch"
+    outdir="$currentdir/bin/$arch"
 
     rm -rf "build"
     rm -rf "$outdir"
@@ -47,13 +47,13 @@ compile() {
 
     "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/aapt"
     "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/aapt2"
-    "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/libaapt2_jni.so"
+    # "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/libaapt2_jni.so"
     "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/zipalign"
     
     mkdir -p "$outdir"
     mv "tools/aapt" "$outdir"
     mv "tools/aapt2" "$outdir"
-    mv "tools/libaapt2_jni.so" "$outdir"
+    # mv "tools/libaapt2_jni.so" "$outdir"
     mv "tools/zipalign" "$outdir"
     
     cd "$currentdir" || exit 1
@@ -71,8 +71,8 @@ build() {
 packageAndClean() {
     rm -rf "build"
     rm "tools-all.zip"
-    zip -r "tools-all.zip" "dist/*"
-    rm -rf "dist"
+    zip -r "tools-all.zip" "bin"
+    rm -rf "bin"
 }
 
 main() {
