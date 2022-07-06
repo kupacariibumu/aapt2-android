@@ -27,7 +27,7 @@ elseif(ANDROID_ABI STREQUAL "x86_64" OR ANDROID_ABI STREQUAL "x86")
         ${SRC_PATH}/libpng/intel/intel_init.c
         ${SRC_PATH}/libpng/intel/filter_sse2_intrinsics.c)
     
-    target_compile_definitions(libpng PUBLIC -DPNG_INTEL_SSE_OPT=1)
+    target_compile_definitions(libpng PRIVATE -DPNG_INTEL_SSE_OPT=1)
 endif()
         
 target_include_directories(libpng PRIVATE ${SRC_PATH}/libpng)

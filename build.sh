@@ -27,7 +27,7 @@ compile() {
         ;;
     esac
     currentdir="$(pwd)"
-    outdir="$currentdir/bin/$arch"
+    outdir="$currentdir/dist/$arch"
 
     rm -rf "build"
     rm -rf "$outdir"
@@ -45,19 +45,17 @@ compile() {
 
     ninja -j16 || exit 1
 
-    llvm-strip --strip-unneeded "aapt"
-    llvm-strip --strip-unneeded "aapt2"
-    llvm-strip --strip-unneeded "aidl"
-    llvm-strip --strip-unneeded "zipalign"
-    llvm-strip --strip-unneeded "protoc"
-
+    llvm-strip --strip-unneeded "tools/aapt"
+    llvm-strip --strip-unneeded "tools/aapt2"
+    llvm-strip --strip-unneeded "tools/aapt2_jni.so"
+    llvm-strip --strip-unneeded "tools/zipalign"
+    
     mkdir -p "$outdir"
-    mv "aapt" "$outdir"
-    mv "aapt2" "$outdir"
-    mv "aidl" "$outdir"
-    mv "zipalign" "$outdir"
-    mv "protoc" "$outdir"
-
+    mv "tools/aapt" "$outdir"
+    mv "tools/aapt2" "$outdir"
+    mv "tools/aapt2_jni.so" "$outdir"
+    mv "tools/zipalign" "$outdir"
+    
     cd "$currentdir" || exit 1
 }
 
@@ -73,8 +71,8 @@ build() {
 packageAndClean() {
     rm -rf "build"
     rm "tools-all.zip"
-    zip -r "tools-all.zip" "bin"
-    rm -rf "bin"
+    zip -r "tools-all.zip" "dist"/*
+    rm -rf "dist"
 }
 
 main() {

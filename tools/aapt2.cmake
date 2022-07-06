@@ -131,7 +131,6 @@ add_library(libaapt2 STATIC
     ${SRC_PATH}/aapt2/ResourcesInternal.pb.cc)
 
 target_include_directories(libaapt2 PUBLIC ${INCLUDES})
-
 target_compile_options(libaapt2 PRIVATE ${COMPILE_FLAGS})
 
 add_library(aapt2_jni SHARED
@@ -139,9 +138,7 @@ add_library(aapt2_jni SHARED
     ${TOOL_SOURCE})
     
 target_include_directories(aapt2_jni PUBLIC ${INCLUDES})
-
 target_compile_options(aapt2_jni PRIVATE ${COMPILE_FLAGS})
-
 target_link_libraries(aapt2_jni ${LD_LIBS})
 
 add_executable(aapt2
@@ -149,7 +146,5 @@ add_executable(aapt2
     ${TOOL_SOURCE})
     
 target_include_directories(aapt2 PUBLIC ${INCLUDES})
-    
 target_compile_options(aapt2 PRIVATE ${COMPILE_FLAGS})
-
 target_link_libraries(aapt2 ${LD_LIBS})
