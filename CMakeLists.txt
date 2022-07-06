@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcolor-diagnostics -fPIC -Wno-attribute
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
-set(TOOL_VERSION "31.0.3")
+set(TOOLS_VERSION "31.0.3")
 
 # 64-bit off_t for lseek.
 add_definitions(-D_FILE_OFFSET_BITS=64)
@@ -26,33 +26,12 @@ else()
     message(FATAL_ERROR "Unsupported architecture: ${ANDROID_ABI}")
 endif()
 
-# libraries
+# precompiled libs
 add_library(crypto STATIC IMPORTED)
 set_target_properties(crypto PROPERTIES IMPORTED_LOCATION ${SRC_PATH}/boringssl/lib/${ANDROID_ABI}/libcrypto.a)
 add_library(ssl STATIC IMPORTED)
 set_target_properties(ssl PROPERTIES IMPORTED_LOCATION ${SRC_PATH}/boringssl/lib/${ANDROID_ABI}/libssl.a)
 
-include(cmake/libbase.cmake)
-include(cmake/libcutils.cmake)
-include(cmake/libutils.cmake)
-include(cmake/liblog.cmake)
-include(cmake/libziparchive.cmake)
-include(cmake/libzopfli.cmake)
-include(cmake/libprotobuf.cmake)
-include(cmake/libandroidfw.cmake)
-include(cmake/libincfs.cmake)
-include(cmake/libselinux.cmake)
-include(cmake/libsepol.cmake)
-include(cmake/libjsoncpp.cmake)
-include(cmake/libpng.cmake)
-include(cmake/libgtest.cmake)
-include(cmake/libfmt.cmake)
-include(cmake/libexpat.cmake)
-include(cmake/libpcre2.cmake)
-
-# binaries
-include(cmake/aapt2.cmake)
-include(cmake/aapt.cmake)
-include(cmake/aidl.cmake)
-include(cmake/protoc.cmake)
-include(cmake/zipalign.cmake)
+# building libs and tools
+add_subdirectory(libs)
+add_subdirectory(tools)

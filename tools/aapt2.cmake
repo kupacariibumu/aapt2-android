@@ -1,35 +1,49 @@
-set(AAPT2_PROTO_SRC)  # proto source files
-set(AAPT2_PROTO_HDRS) # proto head files
-set(AAPT2_PROTO_DIR ${SRC_PATH}/aapt2)
-
-file(GLOB_RECURSE PROTO_FILES ${AAPT2_PROTO_DIR}/*.proto)
-
-foreach(proto ${PROTO_FILES})
-    get_filename_component(FIL_WE ${proto} NAME_WE)
+set(COMPILE_FLAGS
+    -Wno-unused-parameter
+    -Wno-missing-field-initializers
+    -fno-exceptions 
+    -fno-rtti)
     
-    set(TARGET_CPP_FILE "${AAPT2_PROTO_DIR}/${FIL_WE}.pb.cc")
-    set(TARGET_HEAD_FILE "${AAPT2_PROTO_DIR}/${FIL_WE}.pb.h")
+set(INCLUDES
+    ${SRC_PATH}/aapt2
+    ${SRC_PATH}/protobuf/src
+    ${SRC_PATH}/liblog/include
+    ${SRC_PATH}/expat
+    ${SRC_PATH}/fmtlib/include
+    ${SRC_PATH}/libpng
+    ${SRC_PATH}/libbase/include
+    ${SRC_PATH}/androidfw/include
+    ${SRC_PATH}/libidmap2_policies/include
+    ${SRC_PATH}/libsystem/include
+    ${SRC_PATH}/libutils/include
+    ${SRC_PATH}/googletest/include
+    ${SRC_PATH}/libziparchive/include 
+    ${SRC_PATH}/incfs/util/include
+    ${SRC_PATH}/incfs/kernel-headers
+    ${SRC_PATH}/sysprop/include)
     
-    if(EXISTS ${TARGET_CPP_FILE} AND EXISTS ${TARGET_HEAD_FILE})
-        list(APPEND AAPT2_PROTO_SRC ${TARGET_CPP_FILE})
-        list(APPEND AAPT2_PROTO_HDRS ${TARGET_HEAD_FILE})
-    else()
-        # execute the protoc command to generate the proto targets
-        execute_process(
-            COMMAND protoc ${proto}
-            --proto_path=${AAPT2_PROTO_DIR}
-            --cpp_out=${AAPT2_PROTO_DIR}
-            WORKING_DIRECTORY ${AAPT2_PROTO_DIR}
-        )
-        message(STATUS "generate cpp file ${TARGET_CPP_FILE}")
-        message(STATUS "generate head file ${TARGET_HEAD_FILE}")
-    endif()
-endforeach()
+set(LD_LIBS
+    libaapt2
+    libandroidfw 
+    libincfs
+    libselinux
+    libsepol
+    libutils 
+    libcutils
+    libziparchive
+    libbase
+    libprotobuf
+    liblog
+    libpng
+    libexpat
+    libpcre2
+    libfmt
+    crypto
+    ssl
+    c++_static
+    z)
 
-set_source_files_properties(${AAPT2_PROTO_SRC} ${AAPT2_PROTO_HDRS} PROPERTIES GENERATED TRUE)
-    
-add_executable(aapt2
-    ${SRC_PATH}/aapt2/Main.cpp
+set(TOOL_SOURCE
     ${SRC_PATH}/aapt2/cmd/Command.cpp
     ${SRC_PATH}/aapt2/cmd/Compile.cpp
     ${SRC_PATH}/aapt2/cmd/Convert.cpp
@@ -37,7 +51,9 @@ add_executable(aapt2
     ${SRC_PATH}/aapt2/cmd/Dump.cpp
     ${SRC_PATH}/aapt2/cmd/Link.cpp
     ${SRC_PATH}/aapt2/cmd/Optimize.cpp
-    ${SRC_PATH}/aapt2/cmd/Util.cpp
+    ${SRC_PATH}/aapt2/cmd/Util.cpp)
+    
+add_library(libaapt2 STATIC
     ${SRC_PATH}/aapt2/compile/IdAssigner.cpp
     ${SRC_PATH}/aapt2/compile/InlineXmlFormatParser.cpp
     ${SRC_PATH}/aapt2/compile/NinePatch.cpp
@@ -110,45 +126,30 @@ add_executable(aapt2
     ${SRC_PATH}/aapt2/xml/XmlDom.cpp
     ${SRC_PATH}/aapt2/xml/XmlPullParser.cpp
     ${SRC_PATH}/aapt2/xml/XmlUtil.cpp
-    ${SRC_PATH}/aapt2/Configuration.proto
-    ${SRC_PATH}/aapt2/Resources.proto
-    ${SRC_PATH}/aapt2/ResourcesInternal.proto
-    ${AAPT2_PROTO_SRC} ${AAPT2_PROTO_HDRS})
-    
-target_include_directories(aapt2 PUBLIC
-    ${SRC_PATH}/aapt2
-    ${SRC_PATH}/protobuf/src
-    ${SRC_PATH}/liblog/include
-    ${SRC_PATH}/expat
-    ${SRC_PATH}/fmtlib/include
-    ${SRC_PATH}/libpng
-    ${SRC_PATH}/libbase/include
-    ${SRC_PATH}/androidfw/include
-    ${SRC_PATH}/libidmap2_policies/include
-    ${SRC_PATH}/libsystem/include
-    ${SRC_PATH}/libutils/include
-    ${SRC_PATH}/googletest/include
-    ${SRC_PATH}/libziparchive/include 
-    ${SRC_PATH}/incfs/util/include
-    ${SRC_PATH}/incfs/kernel-headers)
+    ${SRC_PATH}/aapt2/Configuration.pb.cc
+    ${SRC_PATH}/aapt2/Resources.pb.cc
+    ${SRC_PATH}/aapt2/ResourcesInternal.pb.cc)
 
-target_link_libraries(aapt2
-    libandroidfw 
-    libincfs
-    libselinux
-    libsepol
-    libutils 
-    libcutils
-    libziparchive
-    libbase
-    libprotobuf
-    liblog
-    libpng
-    libexpat
-    libpcre2
-    libfmt
-    crypto
-    ssl
-    c++_static
-    z
-    dl)
+target_include_directories(libaapt2 PUBLIC ${INCLUDES})
+
+target_compile_options(libaapt2 PRIVATE ${COMPILE_FLAGS})
+
+add_library(aapt2_jni SHARED
+    ${SRC_PATH}/aapt2/jni/aapt2_jni.cpp
+    ${TOOL_SOURCE})
+    
+target_include_directories(aapt2_jni PUBLIC ${INCLUDES})
+
+target_compile_options(aapt2_jni PRIVATE ${COMPILE_FLAGS})
+
+target_link_libraries(aapt2_jni ${LD_LIBS})
+
+add_executable(aapt2
+    ${SRC_PATH}/aapt2/Main.cpp
+    ${TOOL_SOURCE})
+    
+target_include_directories(aapt2 PUBLIC ${INCLUDES})
+    
+target_compile_options(aapt2 PRIVATE ${COMPILE_FLAGS})
+
+target_link_libraries(aapt2 ${LD_LIBS})

@@ -34,7 +34,8 @@ target_include_directories(aapt PUBLIC
     ${SRC_PATH}/libsystem/include
     ${SRC_PATH}/liblog/include
     ${SRC_PATH}/incfs/util/include
-    ${SRC_PATH}/incfs/kernel-headers)
+    ${SRC_PATH}/incfs/kernel-headers
+    ${SRC_PATH}/sysprop/include)
 
 target_link_libraries(aapt
     libandroidfw
@@ -51,5 +52,4 @@ target_link_libraries(aapt
     libfmt
     crypto
     c++_static
-    z
-    dl)
+    z)

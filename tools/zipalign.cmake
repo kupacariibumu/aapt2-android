@@ -19,5 +19,4 @@ target_link_libraries(zipalign
     libzopfli
     liblog
     c++_static
-    z
-    dl)
+    z)
