@@ -45,10 +45,10 @@ compile() {
 
     ninja -j16 || exit 1
 
-    llvm-strip --strip-unneeded "tools/aapt"
-    llvm-strip --strip-unneeded "tools/aapt2"
-    llvm-strip --strip-unneeded "tools/aapt2_jni.so"
-    llvm-strip --strip-unneeded "tools/zipalign"
+    "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/aapt"
+    "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/aapt2"
+    "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/aapt2_jni.so"
+    "$NDK_TOOLCHAIN/bin/llvm-strip" --strip-unneeded "tools/zipalign"
     
     mkdir -p "$outdir"
     mv "tools/aapt" "$outdir"
